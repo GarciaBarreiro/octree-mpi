@@ -31,6 +31,8 @@ class main_options
 	// Files & paths
 	fs::path      inputFile{};
 	fs::path      outputDirName{};
+    float         radius{};
+    fs::path      debugFile{};
 };
 
 extern main_options mainOptions;
@@ -41,7 +43,7 @@ enum LongOptions : int
 };
 
 // Define short options
-const char* const short_opts = "h:i:o:";
+const char* const short_opts = "h:i:o:r:d:";
 
 // Define long options
 const option long_opts[] = {
