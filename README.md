@@ -7,9 +7,8 @@
 ## Background
 
 LiDAR (Light and Ranging Detection) technology has now become the quintessential technique for collecting geospatial 
-data from the earth's surface. This code implements a method for automatic classification of objects with LiDAR data, 
-with the aim of detecting ground, vegetation and buildings in the cloud of points.
-
+data from the earth's surface. This code implements a method for point cloud partitioning based on distributed memory
+and MPI (Message Passing Interface) technology.
 
 Original project: https://gitlab.citius.usc.es/lidar/rule-based-classifier.
 		

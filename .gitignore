@@ -11,3 +11,6 @@ main
 sandbox.cpp
 lib/*
 Release
+build/*
+.cache/
+compile_commands.json
