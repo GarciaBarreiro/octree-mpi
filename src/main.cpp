@@ -236,13 +236,14 @@ int main(int argc, char* argv[])
         deb.close();
     }
 
-    // Sequential
     if (node == 0)
     {
         std::cout << "\nTotal number of read points: " << totalPoints << "\n"
             << "Total number of overlapping points: " << totalOvl << "\n"
             << "Total number of unique points: " << totalPoints - totalOvl << "\n";
 
+        // Sequential
+        /*
         std::cout << "\n-------------------------------------------------\n\n";
 
         tw.start();
@@ -275,6 +276,7 @@ int main(int argc, char* argv[])
         tw.stop();
         std::cout << "Density for radius " << mainOptions.radius << ": " << static_cast<double>(totNeigh) / points.size() << "\n"
             << "    Time to calculate features: " << tw.getElapsedDecimalSeconds() << " seconds\n";
+        */
     }
 
     MPI_Finalize();

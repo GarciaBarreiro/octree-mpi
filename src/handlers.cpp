@@ -122,10 +122,9 @@ std::vector<PointPair> genBoxes(const PointPair& minMax, int n)
         boxes.pop();
 
         // get max length and find max axis
-        double max_l = std::max({ b.second.getX() - b.first.getX(), b.second.getY() - b.first.getY(), b.second.getZ() - b.first.getZ() });
-        char axis = 'z';
-        if (fabs(max_l - (b.second.getX() - b.first.getX())) < epsilon) { axis = 'x'; }
-        else if (fabs(max_l - (b.second.getY() - b.first.getY())) < epsilon) { axis = 'y'; }
+        double max_l = std::max({ b.second.getX() - b.first.getX(), b.second.getY() - b.first.getY() });
+        char axis = 'x';
+        if (fabs(max_l - (b.second.getY() - b.first.getY())) < epsilon) { axis = 'y'; }
 
         // times 2 for split/3
         bool last = i == 2 && n % 2 == 1;
@@ -137,16 +136,11 @@ std::vector<PointPair> genBoxes(const PointPair& minMax, int n)
             boxes.emplace(b.first, Point(b.first.getX() + split, b.second.getY(), b.second.getZ()));
             if (last) { boxes.emplace(Point(b.first.getX() + split, b.first.getY(), b.first.getZ()), Point(b.first.getX() + mult * split, b.second.getY(), b.second.getZ())); }
             boxes.emplace(Point(b.first.getX() + mult * split, b.first.getY(), b.first.getZ()), b.second);
-        } else if (axis == 'y')
+        } else
         {
             boxes.emplace(b.first, Point(b.second.getX(), b.first.getY() + split, b.second.getZ()));
             if (last) { boxes.emplace(Point(b.first.getX(), b.first.getY() + split, b.first.getZ()), Point(b.second.getX(), b.first.getY() + mult * split, b.second.getZ())); }
             boxes.emplace(Point(b.first.getX(), b.first.getY() + mult * split, b.first.getZ()), b.second);
-        } else
-        {
-            boxes.emplace(b.first, Point(b.second.getX(), b.second.getY(), b.first.getZ() + split));
-            if (last) { boxes.emplace(Point(b.first.getX(), b.first.getY(), b.first.getZ() + split), Point(b.second.getX(), b.second.getY(), b.first.getZ() + mult * split)); }
-            boxes.emplace(Point(b.first.getX(), b.first.getY(), b.first.getZ() + mult * split), b.second);
         }
 
         if (last) { break; }
